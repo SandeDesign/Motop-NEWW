@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  
+  html, body, #root {
+    @apply bg-gray-50;
+    min-height: 100vh;
+  }
+  
+  body {
+    @apply font-sans text-gray-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Prevent white flash during navigation */
+  .page-transition-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  
+  .page-transition-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  }
+  
+  .page-transition-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .page-transition-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+  }
+}
+
+@layer components {
+  /* PRIMARY BUTTON - GOUD (FIXED FROM RED) */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-yellow-500 text-black hover:bg-yellow-600 focus:ring-yellow-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  /* SECONDARY BUTTON */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-100 text-black hover:bg-gray-200 focus:ring-yellow-500 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+  }
+  
+  /* CARD PRICING */
+  .card-pricing {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-2 border-transparent hover:border-yellow-500 relative;
+  }
+  
+  .card-popular {
+    @apply border-2 border-yellow-500;
+  }
+  
+  /* TEXT GRADIENT */
+  .text-gradient {
+    @apply bg-gradient-to-r from-yellow-500 to-yellow-600 bg-clip-text text-transparent;
+  }
+
+  /* LOADING SPINNER */
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 3s linear infinite;
+  }
+}
+
+@layer utilities {
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  .hero-padding {
+    @apply py-20 lg:py-32;
+  }
+
+  /* PERFORMANCE: GPU acceleration */
+  .gpu-accelerate {
+    @apply transform translate3d(0, 0, 0);
+  }
+
+  /* PERFORMANCE: Reduce motion for prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      @apply animate-none transition-none !important;
+    }
+  }
+}
+
+/* Custom scrollbar - GOUD */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8941F;
+}
+
+/* Optimize images for faster loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Font display swap - show text faster */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* Reduce CLS (Cumulative Layout Shift) */
+body {
+  overflow-y: scroll;
+}
